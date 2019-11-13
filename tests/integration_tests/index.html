@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Promised SQL Integration tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+</head>
+<body>
+<div id="mocha"></div>
+<script src="node_modules/mocha/mocha.js"></script>
+<script>mocha.setup('bdd')</script>
+
+<!-- load code you want to test here -->
+<script type="module" src="tests/integration_tests/index.js"></script>
+<script type="module" src="tests/integration_tests/run.js"></script>
+
+<script>
+  mocha.run();
+</script>
+</body>
+</html>
