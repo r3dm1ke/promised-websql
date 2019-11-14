@@ -1,5 +1,5 @@
 {
-  "name": "sqlite-promised",
+  "name": "promised-websql",
   "version": "0.1.0",
   "author": "Michael Krasnov <mihalKrasnov@gmail.com> (https://github.com/r3dm1ke)",
   "main": "index.js",

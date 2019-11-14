@@ -15,7 +15,7 @@ I know WebSQL is deprecated and will not be developed, but it is still used wide
 SQL option on React Native/Cordova projects. I had to use SQL in one and wanted to write it with promises, 
 that is why I created this package.
 ## Installation
-`npm install promised-sql --save` or `yarn add promised-sql`.
+`npm install promised-websql --save` or `yarn add promised-websql`.
 
 ## Usage
 ```javascript
