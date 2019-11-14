@@ -70,5 +70,62 @@ describe('WebSQL implementation', () => {
       expect(result.rowsAffected).to.be.equal(1);
     });
 
+    it('Can execute multiple statements', async () => {
+      const results = await pdb.sqls(
+        [
+          ['INSERT INTO TEST (NAME) VALUES (?);', 'test 1'], // 1
+          ['SELECT * FROM TEST'], // 2
+          ['INSERT INTO TEST (NAME) VALUES (?);', 'test 2'], // 3
+          ['SELECT * FROM TEST WHERE ID = ?;', '5'], // 4
+          ['SELECT * FROM TEST'], // 5
+          ['INSERT INTO TEST (NAME) VALUES (?);', 'test 3'], // 6
+          ['DELETE FROM TEST WHERE ID = ?;', '1'], // 7
+          ['SELECT * FROM TEST'] // 8
+        ]
+      );
+      // Results
+      expect(results).to.have.length(8);
+      // 1st query
+      const [first_transaction, first_results] = results[0];
+      expect(first_results.rowsAffected).to.be.equal(1);
+      // 2nd query
+      const [second_transaction, second_results] = results[1];
+      expect(second_results.rows).to.have.length(4);
+      expect(second_results.rows[3].ID).to.be.equal(4);
+      expect(second_results.rows[3].NAME).to.be.equal('test 1');
+      // 3rd query
+      const [third_transaction, third_results] = results[2];
+      expect(third_results.rowsAffected).to.be.equal(1);
+      // 4th query
+      const [forth_transaction, forth_results] = results[3];
+      expect(forth_results.rows).to.have.length(1);
+      expect(forth_results.rows[0].ID).to.be.equal(5);
+      expect(forth_results.rows[0].NAME).to.be.equal('test 2');
+      // 5th query
+      const [fifth_transaction, fifth_results] = results[4];
+      expect(fifth_results.rows).to.have.length(5);
+      // 6th query
+      const [sixth_transaction, sixth_results] = results[5];
+      expect(sixth_results.rowsAffected).to.be.equal(1);
+      // 7th query
+      const [seventh_transaction, seventh_results] = results[6];
+      expect(seventh_results.rowsAffected).to.be.equal(1);
+      // 8th query
+      const [eigth_transaction, eigth_results] = results[7];
+      expect(eigth_results.rows).to.have.length(5);
+      expect(eigth_results.rows[4].NAME).to.be.equal('test 3');
+    });
+
+    it('Can throw errors from multiple statements', async () => {
+      try {
+        await pdb.sqls([
+          ['SELECT * FROM TEST;'],
+          ['SELECT * FROM INVALID WHERE ID = ?;', '3'],
+          ['SELECT * FROM BAD WHERE ID = ?;', '3']
+        ]);
+      } catch ([transaction, error]) {
+        expect(error.message).to.match(/no such table: INVALID/);
+      }
+    });
   });
 });
