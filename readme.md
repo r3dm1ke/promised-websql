@@ -20,7 +20,7 @@ that is why I created this package.
 ## Usage
 ```javascript
 import * as SQLite from 'expo-sqlite';
-import PromisedSQLite from 'react-native-promised-sqlite';
+import PromisedSQLite from 'promised-websql';
 
 // Setup
 const db = SQLite.openDatabase('test.db');
