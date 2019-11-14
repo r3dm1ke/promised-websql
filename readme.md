@@ -1,4 +1,4 @@
-# Promised SQL
+# Promised WebSQL
 
 A wrapper for WebSQL implementations to make them support promises.
 
