@@ -10,6 +10,10 @@ Tested with:
 While not tested, it should work with Cordova's `cordova-sqlite-storage` and any WebSQL implementation 
 in accordance with [this standard](https://www.w3.org/TR/webdatabase/).
 
+## Why
+I know WebSQL is deprecated and will not be developed, but it is still used widely and remains the only
+SQL option on React Native/Cordova projects. I had to use SQL in one and wanted to write it with promises, 
+that is why I created this package.
 ## Installation
 `npm install promised-sql --save` or `yarn add promised-sql`.
 
