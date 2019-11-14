@@ -1,8 +1,15 @@
 {
-  "name": "react-native-sqlite-promised",
-  "version": "0.0.1",
+  "name": "sqlite-promised",
+  "version": "0.1.0",
+  "author": "Michael Krasnov <mihalKrasnov@gmail.com> (https://github.com/r3dm1ke)",
   "main": "index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/r3dm1ke/promised-sql.git"
+  },
+  "keywords": ["sql", "websql", "sqlite", "expo-sqlite", "promises"],
+  "homepage": "https://github.com/r3dm1ke/promised-sql.git",
   "scripts": {
     "test": "mocha --require @babel/register"
   },
