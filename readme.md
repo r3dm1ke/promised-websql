@@ -1,11 +1,43 @@
-#React Native Promised SQLite
+#Promised SQL
 
-A wrapper for `expo-sqlite` and `react-native-sqlite-storage` to 
-use them with a Promise-based API.
+A wrapper for WebSQL implementations to make them support promises.
 
-#### Quick example (expo-sqlite)
+Tested with:
+- Chrome's WebSQL
+- Expo SDK's `expo-sqlite`
+- React Native's `react-native-sqlite-storage`
+
+While not tested, it should work with Cordova's `cordova-sqlite-storage` and any WebSQL implementation 
+in accordance with [this standard](https://www.w3.org/TR/webdatabase/).
+
+## Installation
+`npm install promised-sql --save` or `yarn add promised-sql`.
+
+## Usage
 ```javascript
+import * as SQLite from 'expo-sqlite';
+import PromisedSQLite from 'react-native-promised-sqlite';
 
-              
+// Setup
+const db = SQLite.openDatabase('test.db');
+const promised_db = PromisedSQLite(db);
+
+// Usage
+promised_db.sql(
+  'CREATE TABLE AWESOME_PACKAGES(' +
+  'ID INT PRIMARY KEY NOT NULL, ' +
+  'NAME TEXT NOT NULL, ' +
+  'URL TEXT NOT NULL);')
+  .then(([transaction, result]) => {
+    console.log('Table created!');
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
+
+## API Reference
+Coming soon
+## Contributing
+Any contributions are welcome. Feel free to open an issue if you find a bug or a pull request if you want to fix it.
 

@@ -11,7 +11,7 @@ promised_db.sql(
   'ID INT PRIMARY KEY NOT NULL, ' +
   'NAME TEXT NOT NULL, ' +
   'URL TEXT NOT NULL);')
-  .then((statement, data) => {
+  .then(([transaction, result]) => {
     console.log('Table created!');
   })
   .catch((error) => {
