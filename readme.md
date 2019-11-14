@@ -20,11 +20,11 @@ that is why I created this package.
 ## Usage
 ```javascript
 import * as SQLite from 'expo-sqlite';
-import PromisedSQLite from 'promised-websql';
+import PromisedWebSQL from 'promised-websql';
 
 // Setup
 const db = SQLite.openDatabase('test.db');
-const promised_db = PromisedSQLite(db);
+const promised_db = PromisedWebSQL(db);
 
 // Usage
 promised_db.sql(
@@ -35,7 +35,7 @@ promised_db.sql(
   .then(([transaction, result]) => {
     console.log('Table created!');
   })
-  .catch((error) => {
+  .catch(([transaction, error]) => {
     console.error(error);
   });
 ```
