@@ -1,4 +1,4 @@
-# Promised SQL
+# Promised WebSQL
 
 A wrapper for WebSQL implementations to make them support promises.
 
@@ -20,11 +20,11 @@ that is why I created this package.
 ## Usage
 ```javascript
 import * as SQLite from 'expo-sqlite';
-import PromisedSQLite from 'react-native-promised-sqlite';
+import PromisedWebSQL from 'promised-websql';
 
 // Setup
 const db = SQLite.openDatabase('test.db');
-const promised_db = PromisedSQLite(db);
+const promised_db = PromisedWebSQL(db);
 
 // Usage
 promised_db.sql(
@@ -41,7 +41,24 @@ promised_db.sql(
 ```
 
 ## API Reference
-Coming soon
+`PromisedWebSQL(db)`
+- Arguments:
+    - `db: object` - a DB-like object that conforms to the WebSQL specification,
+    most notably, has a `#transaction` function.
+- Returns:
+    - `{sql: function, sqls: function}`
+ 
+`PromisedWebSQL#sql(sql_query, paramerters)`
+- Arguments:
+    - `sql_query: string` - an SQL query to execute
+    - `parameters?: Array<string>` - an optional array of parameters to
+    interpolate `?` symbols in `sql_query`.
+- Returns:
+    - `Promise<[transaction: SQLTransaction, result: ResultSet]>` - 
+    A promise which resolves when the transaction is executed. Resolves with an array,
+    where the first element is the transaction itself and the second is the response from
+    the database api. If rejected, rejects with an array where the first element is the 
+    transaction itself, and the second is the error returned from the database api.
 ## Contributing
 Any contributions are welcome. Feel free to open an issue if you find a bug or a pull request if you want to fix it.
 
