@@ -45,14 +45,14 @@ promised_db.sql(
 ```
 
 ## API Reference
-####`PromisedWebSQL(db)`
+`PromisedWebSQL(db)`
 - Arguments:
     - `db: object` - a DB-like object that conforms to the WebSQL specification,
     most notably, has a `#transaction` function.
 - Returns:
     - `{sql: function, sqls: function}` - an object that exposes the api, listed below
  
-####`PromisedWebSQL#sql(sql_query, paramerters?)`
+`PromisedWebSQL#sql(sql_query, paramerters?)`
 
 Execute an SQL query on the database, optionally interpolate with parameters.
 - Arguments:
@@ -66,7 +66,7 @@ Execute an SQL query on the database, optionally interpolate with parameters.
     the database api. If rejected, rejects with an array where the first element is the 
     transaction itself, and the second is the error returned from the database api.
     
-####`PromisedWebSQL#sqls(sql_queries)`
+`PromisedWebSQL#sqls(sql_queries)`
 
 Execute multiple SQL queries on the database, optionally interpolate with parameters.
 - Arguments:
