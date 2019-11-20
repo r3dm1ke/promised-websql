@@ -1,7 +1,8 @@
 ![npm](https://img.shields.io/npm/v/promised-websql)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/promised-websql)
 # Promised WebSQL
 
-A wrapper for WebSQL implementations to make them support promises.
+A lightweight wrapper for WebSQL implementations to make them support promises.
 
 Tested with:
 - Chrome's WebSQL
