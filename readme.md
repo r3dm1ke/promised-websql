@@ -1,5 +1,7 @@
+
 ![npm](https://img.shields.io/npm/v/promised-websql)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/promised-websql)
+
 # Promised WebSQL
 
 A lightweight wrapper for WebSQL implementations to make them support promises.
@@ -37,7 +39,7 @@ promised_db.sql(
   .then(([transaction, result]) => {
     console.log('Table created!');
   })
-  .catch((error) => {
+  .catch(([transaction, error]) => {
     console.error(error);
   });
 ```
