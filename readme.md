@@ -1,3 +1,4 @@
+![npm](https://img.shields.io/npm/v/promised-websql)
 # Promised WebSQL
 
 A wrapper for WebSQL implementations to make them support promises.
